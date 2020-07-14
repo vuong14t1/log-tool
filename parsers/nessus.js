@@ -30,6 +30,7 @@ util.inherits(NessusStream, Stream)
 
 // assumes UTF-8
 NessusStream.prototype.write = function (data) {
+  console.log("vao day");
   // cannot write to a stream after it has ended
   if ( this._ended ) 
     throw new Error('NessusStream: write after end')
@@ -141,11 +142,13 @@ NessusStream.prototype.isResult = function(line){
 
 //Various stream boilerplate functions
 NessusStream.prototype.end = function (str) {
+
   if ( this._ended ) return
   
   if ( ! this.writable ) return
   
   if ( arguments.length ){
+    console.log("=== end " + JSON.stringify(str));
     this.write(str)
   }
 
